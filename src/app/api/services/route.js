@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/mongodb';
 import Service from '@/models/Service';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 // Récupérer les services publics
 export async function GET(request) {
   try {

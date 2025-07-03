@@ -40,4 +40,6 @@ async function connectToDatabase() {
   return cached.conn;
 }
 
-export default connectToDatabase; 
+// Export both default and named export
+export default connectToDatabase;
+export { connectToDatabase }; 

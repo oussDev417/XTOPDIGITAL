@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/mongodb';
 import Testimonial from '@/models/Testimonial';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 // Récupérer les témoignages publics
 export async function GET(request) {
   try {
