@@ -1,0 +1,36 @@
+{
+  "name": "digiv",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p $PORT",
+    "lint": "next lint",
+    "seed": "node -r @babel/register src/scripts/seed.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/register": "^7.25.9",
+    "@splidejs/react-splide": "^0.7.12",
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "dotenv": "^16.5.0",
+    "framer-motion": "^12.9.2",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.13.2",
+    "motion": "^12.0.1",
+    "next": "14.2.17",
+    "next-auth": "^4.24.7",
+    "react": "^18",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dom": "^18",
+    "react-modal-video": "^2.0.2",
+    "react-quill": "^2.0.0",
+    "sass": "^1.83.4",
+    "scss": "^0.2.4",
+    "swiper": "^11.2.1"
+  }
+}

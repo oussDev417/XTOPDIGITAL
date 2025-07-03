@@ -1,0 +1,160 @@
+/* Styles pour le composant de témoignages */
+
+.testimonial {
+  position: relative;
+}
+
+.testimonial__title h1 {
+  margin-bottom: 60px;
+}
+
+.testimonial__wapper {
+  position: relative;
+}
+
+.testimonial-slider {
+  padding: 20px 0;
+}
+
+.testimonial-slider .slide {
+  background-color: #fff;
+  box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 30px;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.testimonial-slider .slide:hover {
+  transform: translateY(-10px);
+}
+
+.testimonial-slider .star {
+  margin-bottom: 20px;
+}
+
+.testimonial-slider .star i {
+  color: #F7B614;
+}
+
+.testimonial-slider .star i.text-muted {
+  color: #d1d1d1;
+}
+
+.testimonial-slider .review {
+  font-size: 18px;
+  line-height: 28px;
+  color: #666;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.testimonial-slider .reviewer__info {
+  align-items: center;
+}
+
+.testimonial-slider .reviewer__info img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial-slider .reviewer__info p {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #222;
+}
+
+.testimonial-slider .reviewer__info small {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Navigation et pagination */
+.slide__nav {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slide__nav:hover {
+  background-color: #F7B614;
+  color: #fff;
+}
+
+.slide-dots {
+  font-size: 16px;
+  font-weight: 600;
+  color: #999;
+  cursor: pointer;
+  padding: 0 5px;
+  transition: all 0.3s ease;
+}
+
+.slide-dots-active {
+  color: #222;
+  position: relative;
+}
+
+.slide-dots-active::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #222;
+  bottom: -5px;
+  left: 0;
+}
+
+/* Styles pour le composant VideoTestimonial */
+.video-testimonial {
+  margin-top: 80px;
+}
+
+.video-wrapper {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.rounded-10 {
+  border-radius: 10px;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  color: #F7B614;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.play-button:hover {
+  background-color: #F7B614;
+  color: #fff;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.mt-100 {
+  margin-top: 100px;
+} 
