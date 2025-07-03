@@ -1,6 +1,4 @@
-import { NextResponse } from 'next/server';
-import { writeFile } from 'fs/promises';
-import path from 'path';
+﻿import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../../auth/[...nextauth]/route';
 
@@ -33,50 +31,37 @@ export async function POST(req) {
         { status: 400 }
       );
     }
-    
-    const buffer = Buffer.from(await file.arrayBuffer());
-    
-    // Créer un nom de fichier unique avec timestamp
-    const filename = `${Date.now()}-${file.name.replace(/\s+/g, '-').toLowerCase()}`;
-    
-    // Déterminer le dossier de destination en fonction du type de contenu
-    const contentType = formData.get('type') || 'general';
-    let uploadDir;
-    
-    switch (contentType) {
-      case 'blog':
-        uploadDir = 'blogs';
-        break;
-      case 'service':
-        uploadDir = 'services';
-        break;
-      case 'project':
-        uploadDir = 'projects';
-        break;
-      case 'testimonial':
-        uploadDir = 'testimonials';
-        break;
-      default:
-        uploadDir = 'general';
+
+    // Vérifier la taille du fichier (2MB max)
+    const maxSize = 2 * 1024 * 1024; // 2MB
+    if (file.size > maxSize) {
+      return NextResponse.json(
+        { error: 'Le fichier est trop volumineux. Taille maximale : 2MB.' },
+        { status: 400 }
+      );
     }
     
-    // Construire le chemin complet
-    const uploadPath = path.join(process.cwd(), 'public', 'images', uploadDir);
-    const filePath = path.join(uploadPath, filename);
-    const publicPath = `/images/${uploadDir}/${filename}`;
+    // Convertir le fichier en buffer
+    const buffer = Buffer.from(await file.arrayBuffer());
     
-    // Écrire le fichier
-    await writeFile(filePath, buffer);
+    // Solution temporaire : encoder en base64
+    const base64 = buffer.toString('base64');
+    const dataUrl = `data:${file.type};base64,${base64}`;
     
-    return NextResponse.json({ 
+    const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '-').toLowerCase()}`;
+    
+    return NextResponse.json({
       success: true,
-      url: publicPath
+      url: dataUrl,
+      filename: filename,
+      note: 'Image encodée en base64. Pour une utilisation en production, configurez Cloudinary.'
     });
+    
   } catch (error) {
     console.error('Erreur lors du téléchargement du fichier:', error);
     return NextResponse.json(
-      { error: 'Erreur lors du téléchargement du fichier' },
+      { error: 'Erreur lors du téléchargement du fichier: ' + error.message },
       { status: 500 }
     );
   }
-} 
+}

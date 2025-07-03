@@ -42,7 +42,7 @@ export default function ProjectsOne({ isProjectUseCaseShow }) {
           <h1 className="title">Nos dernières réalisations pour nos meilleurs clients</h1>
           <Link href="/projects" className="circle mt-5 mt-lg-0">
             <i className="fa-solid fa-arrow-right"></i>
-            <span>Voir tous les projets</span>
+            <span>Voir plus</span>
           </Link>
         </SlideDown>
         {/* title End */}

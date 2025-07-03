@@ -43,62 +43,88 @@ export default function ServiceThree({ services = [], isLoading = false }) {
   });
 
   return (
-    <section className="services all__services py__130">
-      <div className="container">
-        <div className="row">
-          {getCurrentPageServices().map((service, index) => (
-            <SlideUp
-              key={service._id || service.id}
-              className="col-xl-4 col-md-6 mb-5"
-              delay={(index % 3) + 1} // Animation delay based on position
-            >
-              <ServiceCard 
-                imgSrc={service.imgSrc || `/images/services/service-${service.order || index + 1}.png`}
-                title={service.title}
-                description={service.description}
-                slug={service.slug || service._id || service.id}
-              />
-            </SlideUp>
-          ))}
-        </div>
+    <>
+      <style jsx>{`
+        .services-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 2rem;
+        }
+        .service-card-container {
+          flex: 1;
+          min-width: 300px;
+          max-width: 400px;
+        }
+        @media (max-width: 768px) {
+          .service-card-container {
+            min-width: 100%;
+            max-width: 100%;
+          }
+        }
+        .row .col-xl-4,
+        .row .col-md-6 {
+          display: flex;
+          align-items: stretch;
+        }
+      `}</style>
+      
+      <section className="services all__services py__130">
+        <div className="container">
+          <div className="row">
+            {getCurrentPageServices().map((service, index) => (
+              <SlideUp
+                key={service._id || service.id}
+                className="col-xl-4 col-md-6 mb-5 d-flex"
+                delay={(index % 3) + 1} // Animation delay based on position
+              >
+                <ServiceCard 
+                  imgSrc={service.imgSrc || `/images/services/service-${service.order || index + 1}.png`}
+                  title={service.title}
+                  description={service.description}
+                  slug={service.slug || service._id || service.id}
+                />
+              </SlideUp>
+            ))}
+          </div>
 
-        {totalPages > 1 && (
-          <SlideUp className="custom__pagination">
-            <div className="row">
-              <div className="col-12">
-                <ul className="d-flex justify-content-center">
-                  <li 
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    className={currentPage === 1 ? 'disabled' : ''}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <i className="fa-solid fa-arrow-left"></i>
-                  </li>
-                  
-                  {formattedPageNumbers.map((pageNum, index) => (
+          {totalPages > 1 && (
+            <SlideUp className="custom__pagination">
+              <div className="row">
+                <div className="col-12">
+                  <ul className="d-flex justify-content-center">
                     <li 
-                      key={index}
-                      onClick={() => handlePageChange(index + 1)}
-                      className={currentPage === index + 1 ? 'active' : ''}
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      className={currentPage === 1 ? 'disabled' : ''}
                       style={{ cursor: 'pointer' }}
                     >
-                      {pageNum}
+                      <i className="fa-solid fa-arrow-left"></i>
                     </li>
-                  ))}
-                  
-                  <li 
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    className={currentPage === totalPages ? 'disabled' : ''}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <i className="fa-solid fa-arrow-right"></i>
-                  </li>
-                </ul>
+                    
+                    {formattedPageNumbers.map((pageNum, index) => (
+                      <li 
+                        key={index}
+                        onClick={() => handlePageChange(index + 1)}
+                        className={currentPage === index + 1 ? 'active' : ''}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        {pageNum}
+                      </li>
+                    ))}
+                    
+                    <li 
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      className={currentPage === totalPages ? 'disabled' : ''}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <i className="fa-solid fa-arrow-right"></i>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </SlideUp>
-        )}
-      </div>
-    </section>
+            </SlideUp>
+          )}
+        </div>
+      </section>
+    </>
   );
 } 

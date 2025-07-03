@@ -237,9 +237,9 @@ export default function AdminDashboard() {
                     </Link>
                   </li>
                   <li className="list-group-item border-0 px-0 py-2">
-                    <Link href="/admin/users" className="text-decoration-none text-primary d-flex align-items-center">
-                      <i className="fa-solid fa-users me-2"></i>
-                      Gérer les utilisateurs
+                    <Link href="/admin/messages" className="text-decoration-none text-primary d-flex align-items-center">
+                      <i className="fa-solid fa-envelope me-2"></i>
+                      Messages de contact
                     </Link>
                   </li>
                 </ul>

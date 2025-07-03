@@ -84,55 +84,89 @@ export default function ImageUploader({ onImageUploaded, type = 'general', class
   };
 
   return (
-    <div className={`${className}`}>
+    <div className={className}>
       <div
-        className={`relative border-2 border-dashed rounded-lg p-4 text-center 
-          ${isUploading ? 'bg-gray-100 border-gray-400' : 'border-gray-300 hover:border-blue-500 hover:bg-blue-50'} 
-          transition-colors cursor-pointer h-40 flex flex-col justify-center items-center`}
+        className={`position-relative border border-2 border-dashed rounded p-4 text-center 
+          ${isUploading ? 'bg-light border-secondary' : 'border-secondary'} 
+          ${!isUploading ? 'hover-border-primary' : ''} 
+          cursor-pointer d-flex flex-column justify-content-center align-items-center`}
+        style={{ 
+          height: '160px', 
+          cursor: 'pointer',
+          transition: 'all 0.3s ease',
+          backgroundColor: isUploading ? '#f8f9fa' : 'transparent'
+        }}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
         onClick={triggerFileInput}
+        onMouseEnter={(e) => {
+          if (!isUploading) {
+            e.target.style.borderColor = '#0d6efd';
+            e.target.style.backgroundColor = '#f0f8ff';
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (!isUploading) {
+            e.target.style.borderColor = '#6c757d';
+            e.target.style.backgroundColor = 'transparent';
+          }
+        }}
       >
         <input
           type="file"
           ref={fileInputRef}
           onChange={handleFileChange}
-          className="hidden"
+          className="d-none"
           accept="image/png, image/jpeg, image/gif, image/webp"
         />
         
         {preview && (
-          <div className="absolute inset-0 flex items-center justify-center p-2">
+          <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center p-2">
             <img 
               src={preview} 
               alt="Preview" 
-              className="max-h-full max-w-full object-contain rounded" 
+              className="img-fluid rounded"
+              style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
             />
-            <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition-opacity rounded"></div>
+            <div 
+              className="position-absolute top-0 start-0 w-100 h-100 rounded"
+              style={{ 
+                backgroundColor: 'rgba(0,0,0,0)',
+                transition: 'background-color 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = 'rgba(0,0,0,0.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = 'rgba(0,0,0,0)';
+              }}
+            ></div>
           </div>
         )}
         
         {!preview && (
           <>
-            <i className="bi bi-cloud-upload text-3xl text-gray-400 mb-2"></i>
-            <p className="text-sm text-gray-500">
+            <i className="bi bi-cloud-upload display-4 text-muted mb-2"></i>
+            <p className="text-muted mb-1">
               Glissez-déposez une image ou cliquez pour sélectionner
             </p>
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-muted small">
               PNG, JPG, GIF, WEBP · Max 5MB
             </p>
           </>
         )}
         
         {isUploading && (
-          <div className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center rounded">
-            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-500"></div>
+          <div className="position-absolute top-0 start-0 w-100 h-100 bg-white bg-opacity-75 d-flex align-items-center justify-content-center rounded">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Téléchargement...</span>
+            </div>
           </div>
         )}
       </div>
       
       {error && (
-        <div className="mt-2 text-red-500 text-sm">
+        <div className="alert alert-danger mt-2 small">
           {error}
         </div>
       )}

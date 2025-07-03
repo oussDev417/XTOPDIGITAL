@@ -1,3 +1,30 @@
+// Services Grid Layout
+.services .row {
+  .col-xl-4,
+  .col-md-6 {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 2rem;
+    
+    .service__card {
+      width: 100%;
+    }
+  }
+}
+
+// Ensure all service cards have equal height
+.all__services {
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    
+    > div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
 .services {
   background-color: var(--main-clr);
   padding-bottom: 0px;
@@ -96,9 +123,37 @@
     background-color: #fff;
     border-radius: 10px;
     transition: all 0.5s;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
     @include breakpoint(md) {
       padding: 20px;
     }
+    
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      margin-bottom: 20px;
+      
+      @include breakpoint(md) {
+        height: 180px;
+      }
+      
+      @include breakpoint(sm) {
+        height: 160px;
+      }
+    }
+    
+    &:hover img {
+      transform: scale(1.05);
+    }
+    
     .fa-arrow-right{
       transform: rotate(-45deg);
       font-size: 18px;
@@ -120,6 +175,7 @@
       color: var(--secondary-clr);
       margin-top: 30px;
       display: block;
+      flex-shrink: 0;
       @include breakpoint(sm) {
         margin-top: 20px;
       }
@@ -129,6 +185,12 @@
       color: #6e6f75;
       margin-top: 30px;
       margin-bottom: 46px;
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
       @include breakpoint(sm) {
         margin-top: 20px;
         margin-bottom: 34px;
@@ -138,6 +200,8 @@
       transition: all 0.5s;
       color: var(--main-clr);
       font-weight: 600;
+      flex-shrink: 0;
+      margin-top: auto;
     }
     .black{
       display: none;
@@ -292,4 +356,31 @@
   background-color: transparent;
   margin-bottom: 181px;
   padding-bottom: 130px;
+}
+
+// Services Grid Layout
+.services .row {
+  .col-xl-4,
+  .col-md-6 {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 2rem;
+    
+    .service__card {
+      width: 100%;
+    }
+  }
+}
+
+// Ensure all service cards have equal height
+.all__services {
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    
+    > div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }

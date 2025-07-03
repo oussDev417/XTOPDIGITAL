@@ -56,12 +56,11 @@ export default function AdminLayout({ children }) {
     { title: 'Tableau de bord', path: '/admin', icon: 'fa-solid fa-gauge-high' },
     { title: 'Blogs', path: '/admin/blogs', icon: 'fa-solid fa-file-lines' },
     { title: 'Commentaires', path: '/admin/comments', icon: 'fa-solid fa-comments' },
-    { title: 'Messages', path: '/admin/messages', icon: 'fa-solid fa-envelope' },
     { title: 'Services', path: '/admin/services', icon: 'fa-solid fa-gear' },
     { title: 'Projets', path: '/admin/projects', icon: 'fa-solid fa-briefcase' },
     { title: 'Témoignages', path: '/admin/testimonials', icon: 'fa-solid fa-comment-dots' },
     { title: 'Pricing', path: '/admin/pricing', icon: 'fa-solid fa-tags' },
-    { title: 'Utilisateurs', path: '/admin/users', icon: 'fa-solid fa-users' },
+    { title: 'Messages', path: '/admin/messages', icon: 'fa-solid fa-envelope' },
     { title: 'Partenaires', path: '/admin/partners', icon: 'fa-solid fa-handshake' },
     { title: 'Paramètres', path: '/admin/settings', icon: 'fa-solid fa-sliders' },
   ];
