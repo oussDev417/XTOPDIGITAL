@@ -24,7 +24,7 @@ export default function Partner({ data = [], className = '' }) {
     <div className={`partner ${className}`}>
       <div className="partner__wapper">
         <div className="partner__content">
-          {logos.map((logoSrc, index) => {
+          {[...logos, ...logos].map((logoSrc, index) => {
             const src = typeof logoSrc === 'string' ? logoSrc : logoSrc.imageUrl;
             return (
               <div className="slide" key={index}>
