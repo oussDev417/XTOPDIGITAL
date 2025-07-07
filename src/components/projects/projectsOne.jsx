@@ -49,11 +49,11 @@ export default function ProjectsOne({ isProjectUseCaseShow }) {
         <div className="projects__wapper">
           {projects.map(({ id, title, categories, imgSrc, slug }) => (
             <SlideUp delay={id} key={id} className="projects__wapper_card">
-              <Link href={slug ? `/project-details?slug=${slug}` : '/project-details'}>
+              <Link href={slug ? `/project-details/${slug}` : '/project-details'}>
                 <img src={imgSrc} alt="img" />
               </Link>
               <div>
-                <Link href={slug ? `/project-details?slug=${slug}` : '/project-details'} className="prj__title t__28">
+                <Link href={slug ? `/project-details/${slug}` : '/project-details'} className="prj__title t__28">
                   {title}
                 </Link>
                 <p className="project__group">{categories}</p>

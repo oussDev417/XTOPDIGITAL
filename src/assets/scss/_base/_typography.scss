@@ -286,15 +286,15 @@ p {
   &__wapper {
     max-width: 1120px;
     margin: auto;
-    overflow: hidden;
+    overflow-x: auto;
   }
 
   &__content {
-    overflow-x: hidden;
-    @include justify();
-    // gap: 60px;
-    width: calc(220px * 10);
-    animation: scroll 40s linear infinite;
+    overflow-x: auto;
+    display: flex;
+    gap: 60px;
+    width: auto;
+    animation: none;
   }
 }
 

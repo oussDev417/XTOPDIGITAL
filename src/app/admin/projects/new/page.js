@@ -81,6 +81,20 @@ export default function NewProject() {
     }
   };
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData({
+          ...formData,
+          imgSrc: reader.result
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
@@ -221,6 +235,19 @@ export default function NewProject() {
                 <p className="text-sm text-gray-500 mt-1">
                   Séparez les technologies par des virgules
                 </p>
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="imgUpload" className="block text-gray-700 mb-2">
+                  Upload d'image
+                </label>
+                <input
+                  type="file"
+                  id="imgUpload"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="w-full p-2 border rounded"
+                />
               </div>
             </div>
 

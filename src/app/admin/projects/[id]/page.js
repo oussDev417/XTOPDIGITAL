@@ -139,6 +139,20 @@ export default function EditProject({ params }) {
     }
   };
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData({
+          ...formData,
+          imgSrc: reader.result
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="flex justify-center my-12">
@@ -295,6 +309,22 @@ export default function EditProject({ params }) {
                 <p className="text-sm text-gray-500 mt-1">
                   Séparez les technologies par des virgules
                 </p>
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="imgUpload" className="block text-gray-700 mb-2">
+                  Upload d'image
+                </label>
+                <input
+                  type="file"
+                  id="imgUpload"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="w-full p-2 border rounded"
+                />
+                {formData.imgSrc && (
+                  <img src={formData.imgSrc} alt="Aperçu" className="mt-2 rounded shadow max-h-32" />
+                )}
               </div>
             </div>
 
