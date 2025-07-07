@@ -11,7 +11,7 @@ import NextAuthSessionProvider from "@/providers/SessionProvider";
 
 export const metadata = {
   title: "XTOP DIGITAL",
-  description: "XTOP DIGITAL Creative Digital Agency next.js templet",
+  description: "XTOP DIGITAL- Agence de prestation de service digitale",
 };
 
 export default function RootLayout({ children }) {
