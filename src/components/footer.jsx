@@ -14,26 +14,8 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="container">
-                {/* Subscribe Form */}
-                <div className="subscribe">
-                    <div className="row">
-                        <div className="col-lg-8">
-                            <h2>Abonnez-vous à notre newsletter et obtenez plus d'informations</h2>
-                        </div>
-                        <div className="col-lg-4 mt-5 mt-lg-0">
-                            <div>
-                                <input type="text" placeholder="Your Email" />
-                                <button className="common__btn">
-                                    <span>S'abonner maintenant</span>
-                                    <i className="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* Subscribe Form */}
                 {/* -------Logo and socal icon */}
-                <div className="row footer__lo_co">
+                <div className="row footer__lo_co mb-5">
                     <div className="col-12">
                         <div className="d-flex justify-content-center">
                             <Link href={"#"} className="d-flex align-items-center footer__logo">

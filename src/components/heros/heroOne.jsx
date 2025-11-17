@@ -11,17 +11,18 @@ const HeroOne = () => {
             <div className="banner__content">
               <div className="banner__content_title">
                 <SlideUp>
-                  <h1>Innovation et Expertise en création de site web</h1>
+                  <h1>Innovation et Expertise en création de solutions digitales</h1>
                 </SlideUp>
                 <SlideUp delay={2}>
                   <p>
-                    Chez XTOP, nous transformons vos idées en réalité avec des sites web, 
-                    applications mobiles et solutions IA innovantes. Boostez votre entreprise 
-                    avec notre expertise technique et créative.
+                  Nous transformons vos idées en réalité digitale en automatisant vos taches quotidiens 
+                                        à travers des solutions digitales sur mesure pour optimiser vos processus métiers,
+                                        <br />
+                                        améliorer votre productivité et stimuler votre croissance.
                   </p>
                 </SlideUp>
                 <SlideUp delay={3}>
-                  <h2 className='text-white'>XTOP DIGITAL</h2>
+                  <h2 className='text-white'>De l'idée à la réalité digitale</h2>
                 </SlideUp>
               </div>
               <SlideUp delay={4} className="buttons d-sm-flex align-items-center">

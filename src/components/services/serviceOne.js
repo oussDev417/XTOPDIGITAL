@@ -40,7 +40,7 @@ export default function ServiceOne() {
       <section className="services py__130" id="services">
         <div className="container position-relative">
           <SlideDown className="d-lg-flex justify-content-between align-items-center services__title">
-            <h1 className="title">Nos solutions pour résoudre vos problèmes d'entreprise</h1>
+            <h1 className="title">Services</h1>
           </SlideDown>
           <div className="flex justify-center my-8">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
@@ -55,7 +55,7 @@ export default function ServiceOne() {
       <div className="container position-relative">
         {/* Title */}
         <SlideDown className="d-lg-flex justify-content-between align-items-center services__title">
-          <h1 className="title">Nos solutions pour résoudre vos problèmes d'entreprise</h1>
+          <h1 className="title">Services</h1>
           <Link href={"/services"} className="common__btn mt-4 mt-lg-0">
             <span>Voir tous les services</span>
             <i className="fa-solid fa-arrow-right"></i>

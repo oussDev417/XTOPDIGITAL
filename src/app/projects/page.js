@@ -5,7 +5,7 @@ import React from 'react'
 const Projects = () => {
     return (
         <>
-            <PageTitle title={"Our Project"} currentPage={"Our Project"} />
+            <PageTitle title={"Nos réalisations"} currentPage={"Nos réalisations"} />
             <ProjectsThree />
         </>
     )

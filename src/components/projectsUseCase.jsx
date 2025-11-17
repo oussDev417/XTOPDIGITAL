@@ -22,7 +22,7 @@ const ProjectsUseCase = () => {
                 </div>
                 <div className="col-lg-6 mt-5 mt-lg-0">
                     <div>
-                        <img src="/images/projects/site.jpg" alt="img" className="projects__usecase_img" />
+                        <img src="/images/projects/projet.webp" alt="img" className="projects__usecase_img" />
                     </div>
                 </div>
             </div>

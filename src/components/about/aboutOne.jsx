@@ -13,7 +13,7 @@ const AboutOne = () => {
                         <div className="col-lg-10">
                             <div>
                                 <h1 className="title">
-                                    Des Solutions Sans Limites, Pour des Résultats Sans Frontières
+                                    Le digital, le moyen le plus rapide de stimuler votre croissance
                                 </h1>
                             </div>
                         </div>
@@ -29,9 +29,9 @@ const AboutOne = () => {
                         <SlideUp>
                             <div className="about__wapper_left">
                                 <p>
-                                    Chez XTOP, nous croyons qu'aucune idée n'est trop ambitieuse, aucun projet trop complexe. Qu'il s'agisse d'un site web simple, d'une application mobile innovante, d'un chatbot intelligent ou d'un système métier sur mesure, nous matérialisons vos visions, quelle que soit votre industrie ou votre localisation.
+                                    Nous donnons vie à vos idées en les transformant en solutions digitales sur mesure pour optimiser vos processus métiers, améliorer votre productivité et stimuler votre croissance.
                                 </p>
-                                <Link href="/about" className="circle">
+                                <Link href="#" className="circle">
                                     <i className="fa-solid fa-arrow-right"></i>
                                     <span>En savoir plus</span>
                                 </Link>
@@ -50,15 +50,15 @@ const AboutOne = () => {
                             <ul className="about__wapper_right">
                                 <li>
                                     <i className="fa-solid fa-check"></i>
-                                    <span>Des solutions sur mesure</span>
+                                    <span>Qualité et fiabilité</span>
                                 </li>
                                 <li>
                                     <i className="fa-solid fa-check"></i>
-                                    <span>Technologies de pointe</span>
+                                    <span>Innovation et expertise</span>
                                 </li>
                                 <li>
                                     <i className="fa-solid fa-check"></i>
-                                    <span>Flexibilité totale</span>
+                                    <span>Evolutivité et adaptabilité</span>
                                 </li>
                             </ul>
                         </SlideUp>

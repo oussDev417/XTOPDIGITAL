@@ -13,7 +13,7 @@ const PageTitle = ({ title, currentPage }) => {
                         <SlideUp className="text-center">
                             <h2>{title}</h2>
                             <div className="d-flex justify-content-center gap-2">
-                                <Link href="/">Home</Link>
+                                <Link href="/">Accueil</Link>
                                 <span>/</span>
                                 <p>{currentPage}</p>
                             </div>
