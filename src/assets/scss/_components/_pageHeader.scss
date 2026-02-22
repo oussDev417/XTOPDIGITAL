@@ -1,7 +1,7 @@
 .page__header {
   background-color: #1f4038;
   padding: 148px 0;
-  @include breakpoint(xl){
+  @include breakpoint(xl) {
     padding: 120px 0;
   }
   .left__arrow {
@@ -24,7 +24,30 @@
       left: 0;
     }
   }
+  h1,
   h2 {
+    color: var(--grayWhite-clr);
+    font-size: 54px;
+    font-weight: 500;
+    line-height: 62px;
+    margin-bottom: 33px;
+    @include breakpoint(xl) {
+      font-size: 45px;
+      line-height: 52px;
+      margin-bottom: 30px;
+    }
+    @include breakpoint(lg) {
+      font-size: 40px;
+      line-height: 42px;
+      margin-bottom: 30px;
+    }
+    @include breakpoint(md) {
+      font-size: 35px;
+      line-height: 37px;
+      margin-bottom: 15px;
+    }
+  }
+  &_title {
     color: var(--grayWhite-clr);
     font-size: 54px;
     font-weight: 500;
@@ -52,6 +75,9 @@
   }
   span {
     color: #6e6f75;
+  }
+  nav span[aria-current="page"] {
+    color: var(--grayWhite-clr);
   }
   p {
     color: var(--grayWhite-clr);

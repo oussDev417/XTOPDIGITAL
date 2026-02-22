@@ -6,6 +6,16 @@
   --secondary-clr: #1A1A1A;
   --grayBlack-clr: #051F0D;
   --gry-clr: #6e6f75;
-  --grayWhite-clr:#e3ece7;
-  --pra-clr:#e3ece7ab;
+  --grayWhite-clr: #e3ece7;
+  --pra-clr: #e3ece7ab;
+  --accent-gradient: linear-gradient(135deg, #3a63a4 0%, #5b8fd9 100%);
+  --cta-gradient: linear-gradient(135deg, #f2d381 0%, #e8b94a 100%);
+  --dark-gradient: linear-gradient(180deg, #0f1b19 0%, #142220 100%);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.16);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

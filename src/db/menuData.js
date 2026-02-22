@@ -10,5 +10,13 @@ export const menuData = [
     {
         title: 'Réalisations',
         link: '/projects',
-    }
+    },
+    {
+        title: 'Blog',
+        link: '/blog',
+    },
+    {
+        title: 'À propos',
+        link: '/about',
+    },
 ];

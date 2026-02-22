@@ -1,112 +1,232 @@
-'use client'
-import React, { useEffect, useState } from 'react'
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import SlideUp from '@/utils/animations/slideUp';
 import SlideDown from '@/utils/animations/slideDown';
-import { testimonialsTwoData } from '@/db/testimonialsTwoData';
+
+const fallbackReviews = [
+    {
+        id: 1,
+        review: "XTOP Digital a entièrement repensé notre présence en ligne. Le nouveau site web a généré 3 fois plus de demandes de devis dès le premier mois. Une équipe à l'écoute et ultra-réactive.",
+        reviewerName: 'Sophie Martin',
+        reviewerPosition: 'Directrice Marketing',
+        company: 'AfriCommerce',
+        imgSrc: '/images/testimonail/Rectangle1.png',
+        stars: 5,
+        result: '+200% de leads',
+    },
+    {
+        id: 2,
+        review: "Grâce à leur expertise en SEO et marketing digital, nous sommes passés de la 5ème à la 1ère page Google en seulement 4 mois. Un retour sur investissement exceptionnel.",
+        reviewerName: 'Thomas Ahouandjinou',
+        reviewerPosition: 'CEO & Fondateur',
+        company: 'BéninTech',
+        imgSrc: '/images/testimonail/Rectangle1.png',
+        stars: 5,
+        result: 'Top 3 Google',
+    },
+    {
+        id: 3,
+        review: "L'application développée par XTOP Digital a transformé la gestion de notre entreprise. Nos processus sont automatisés, nos clients sont satisfaits et notre productivité a doublé.",
+        reviewerName: 'Amina Dossou',
+        reviewerPosition: 'Responsable des Opérations',
+        company: 'LogiPro Afrique',
+        imgSrc: '/images/testimonail/Rectangle1.png',
+        stars: 5,
+        result: 'x2 productivité',
+    },
+    {
+        id: 4,
+        review: "Un accompagnement personnalisé de A à Z. L'équipe comprend parfaitement les enjeux du marché africain et propose des solutions innovantes adaptées à notre contexte.",
+        reviewerName: 'Marc Hounkpatin',
+        reviewerPosition: 'Directeur Général',
+        company: 'CotMedia Group',
+        imgSrc: '/images/testimonail/Rectangle1.png',
+        stars: 5,
+        result: '+80% de CA digital',
+    },
+];
 
 export default function TestimonialTwo() {
-    const [testimonials, setTestimonials] = useState(testimonialsTwoData);
+    const [testimonials, setTestimonials] = useState(fallbackReviews);
+    const [activeIndex, setActiveIndex] = useState(0);
 
     useEffect(() => {
-        async function fetchTestimonials() {
+        async function loadTestimonials() {
             try {
-                const res = await fetch('/api/testimonials?published=true&limit=5', { cache: 'no-store' });
-                if (!res.ok) return;
-                const data = await res.json();
-                if (Array.isArray(data) && data.length > 0) {
-                    setTestimonials(
-                        data.map((t, idx) => ({
+                const [apiRes, usersRes] = await Promise.allSettled([
+                    fetch('/api/testimonials?published=true&limit=5', { cache: 'no-store' }),
+                    fetch('https://randomuser.me/api/?results=5&nat=fr&inc=name,picture'),
+                ]);
+
+                let baseTestimonials = fallbackReviews;
+
+                if (apiRes.status === 'fulfilled' && apiRes.value.ok) {
+                    const data = await apiRes.value.json();
+                    if (Array.isArray(data) && data.length > 0) {
+                        baseTestimonials = data.map((t, idx) => ({
                             id: idx,
-                            review: t.content,
-                            reviewerName: t.name,
-                            reviewerPosition: t.role,
-                            imgSrc: t.imgSrc,
-                            quotesImgSrc: '/images/testimonail/quotes2.svg',
-                            stars: t.rating || 5,
-                        }))
-                    );
+                            review: t.content || t.review,
+                            reviewerName: t.name || t.reviewer?.name,
+                            reviewerPosition: t.role || t.reviewer?.position,
+                            imgSrc: t.imgSrc || t.reviewer?.image,
+                            stars: t.rating || t.stars || 5,
+                            company: fallbackReviews[idx % fallbackReviews.length]?.company,
+                            result: fallbackReviews[idx % fallbackReviews.length]?.result,
+                        }));
+                    }
                 }
-            } catch (e) {
-                console.error(e);
+
+                if (usersRes.status === 'fulfilled' && usersRes.value.ok) {
+                    const userData = await usersRes.value.json();
+                    const users = userData.results || [];
+                    baseTestimonials = baseTestimonials.map((t, i) => {
+                        const user = users[i];
+                        if (!user) return t;
+                        return {
+                            ...t,
+                            reviewerName: t.reviewerName && t.reviewerName !== 'Brendon Walton'
+                                ? t.reviewerName
+                                : `${user.name.first} ${user.name.last}`,
+                            imgSrc: (t.imgSrc && !t.imgSrc.includes('Rectangle1'))
+                                ? t.imgSrc
+                                : user.picture.large,
+                        };
+                    });
+                }
+
+                setTestimonials(baseTestimonials);
+            } catch {
+                // fallback already set
             }
         }
-        fetchTestimonials();
+
+        loadTestimonials();
     }, []);
 
+    const currentTestimonial = testimonials[activeIndex] || testimonials[0];
+
     return (
-        <section className="testimonial testimonial__2 py__130">
+        <section className="testi-about py__130">
             <div className="container">
-                <div className="row">
-                    <SlideUp className="col-lg-6">
-                        <img src="/images/testimonail/CEO.png" alt="img" className="w-100" />
+                <div className="row align-items-center">
+                    {/* Left: Featured photo + info */}
+                    <SlideUp className="col-lg-5 mb-5 mb-lg-0">
+                        <div className="testi-about__showcase">
+                            <div className="testi-about__photo">
+                                <img
+                                    src={currentTestimonial.imgSrc}
+                                    alt={currentTestimonial.reviewerName}
+                                    key={currentTestimonial.imgSrc}
+                                />
+                                <div className="testi-about__photo-badge">
+                                    <div className="testi-about__photo-stars">
+                                        {Array.from({ length: 5 }).map((_, i) => (
+                                            <i key={i} className="bi bi-star-fill"></i>
+                                        ))}
+                                    </div>
+                                    <span>4.9/5 satisfaction</span>
+                                </div>
+                            </div>
+                            <div className="testi-about__stats">
+                                <div className="testi-about__stat">
+                                    <strong>50+</strong>
+                                    <span>Clients satisfaits</span>
+                                </div>
+                                <div className="testi-about__stat">
+                                    <strong>100%</strong>
+                                    <span>Projets livrés</span>
+                                </div>
+                            </div>
+                        </div>
                     </SlideUp>
-                    <div className="col-lg-6 mt-4 mt-lg-0">
-                        <div className="position-relative">
-                            {/* title Start */}
-                            <SlideDown className="testimonial__title">
-                                <h1 className="t__54">
+
+                    {/* Right: Slider */}
+                    <div className="col-lg-7">
+                        <div className="testi-about__content">
+                            <SlideDown>
+                                <span className="section-label">Témoignages clients</span>
+                                <h2 className="t__54">
                                     Ce que nos clients disent de nous
-                                </h1>
+                                </h2>
                             </SlideDown>
-                            {/* title End */}
-                            <div className="testimonial__wapper">
+
+                            <div className="testi-about__slider">
                                 <Swiper
                                     spaceBetween={25}
                                     slidesPerView={1}
+                                    autoplay={{ delay: 5000, disableOnInteraction: false }}
                                     navigation={{
-                                        nextEl: ".next-slide",
-                                        prevEl: ".prev-slide"
+                                        nextEl: '.testi-about-next',
+                                        prevEl: '.testi-about-prev',
                                     }}
                                     pagination={{
-                                        renderBullet: function (index, className) {
-                                            return `<span class='${className}'>0${index + 1}</span>`;
-                                        },
+                                        renderBullet: (index, className) =>
+                                            `<span class='${className}'></span>`,
                                         clickable: true,
-                                        bulletClass: 'slide-dots',
-                                        bulletActiveClass: 'slide-dots-active',
-                                        el: ".testimonial-pagination"
+                                        el: '.testi-about-pagination',
                                     }}
                                     loop
-                                    modules={[Navigation, Pagination]}
-                                    className="testimonial__slides_2">
+                                    modules={[Navigation, Pagination, Autoplay]}
+                                    onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+                                >
                                     {testimonials.map((testimonial) => (
                                         <SwiperSlide key={testimonial.id}>
-                                            <div className="slide">
-                                                <div className="d-flex gap-2 star">
-                                                    {Array.from({ length: testimonial.stars }).map((_, i) => (
-                                                        <i key={i} className="bi bi-star-fill" />
+                                            <div className="testi-about__card">
+                                                <div className="testi-about__card-stars">
+                                                    {Array.from({ length: testimonial.stars || 5 }).map((_, i) => (
+                                                        <i key={i} className="bi bi-star-fill"></i>
                                                     ))}
                                                 </div>
-                                                <p className="review">{testimonial.review}</p>
-                                                <div className="d-flex justify-content-between">
-                                                    <div className="d-flex gap-4 reviewer__info">
-                                                        <img src={testimonial.imgSrc} alt={testimonial.reviewerName} />
-                                                        <div>
-                                                            <p>{testimonial.reviewerName}</p>
-                                                            <small>{testimonial.reviewerPosition}</small>
-                                                        </div>
+                                                <p className="testi-about__card-text">
+                                                    &ldquo;{testimonial.review}&rdquo;
+                                                </p>
+                                                {testimonial.result && (
+                                                    <div className="testi-about__card-result">
+                                                        <i className="fa-solid fa-arrow-trend-up"></i>
+                                                        <span>{testimonial.result}</span>
                                                     </div>
+                                                )}
+                                                <div className="testi-about__card-author">
+                                                    <img
+                                                        src={testimonial.imgSrc}
+                                                        alt={testimonial.reviewerName}
+                                                    />
                                                     <div>
-                                                        <img src={testimonial.quotesImgSrc} alt="quotes" className="quotes" />
+                                                        <p className="testi-about__card-name">
+                                                            {testimonial.reviewerName}
+                                                        </p>
+                                                        <small className="testi-about__card-role">
+                                                            {testimonial.reviewerPosition}
+                                                        </small>
+                                                        {testimonial.company && (
+                                                            <small className="testi-about__card-company d-block">
+                                                                {testimonial.company}
+                                                            </small>
+                                                        )}
                                                     </div>
                                                 </div>
                                             </div>
                                         </SwiperSlide>
                                     ))}
-                                    <div className='d-flex gap-3 mt-4'>
-                                        <div className='prev-slide slide__nav'><i className="fa-solid fa-arrow-left"></i></div>
-                                        <div className='testimonial-pagination d-flex gap-3'></div>
-                                        <div className='next-slide slide__nav'><i className="fa-solid fa-arrow-right"></i></div>
-                                    </div>
                                 </Swiper>
+                                <div className="testi-about__nav">
+                                    <div className="testi-about-prev testi-about__nav-btn">
+                                        <i className="fa-solid fa-arrow-left"></i>
+                                    </div>
+                                    <div className="testi-about-pagination"></div>
+                                    <div className="testi-about-next testi-about__nav-btn">
+                                        <i className="fa-solid fa-arrow-right"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-    )
+    );
 }

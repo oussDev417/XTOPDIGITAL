@@ -14,7 +14,7 @@
     h2 {
       color: var(--grayWhite-clr);
       font-size: 54px;
-      font-weight: 500px;
+      font-weight: 500;
       line-height: 62px;
       max-width: 690px;
       @include breakpoint(xl) {
@@ -102,7 +102,7 @@
     &_group {
       font-size: 28px;
       color: var(--grayWhite-clr);
-      font-weight: 500px;
+      font-weight: 500;
       line-height: 38px;
       margin-bottom: 29px;
     }

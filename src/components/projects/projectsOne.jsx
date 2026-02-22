@@ -37,20 +37,22 @@ export default function ProjectsOne({ isProjectUseCaseShow }) {
   return (
     <section className="projects py__130">
       <div className="container">
-        {/* title Start */}
         <SlideDown className="d-lg-flex justify-content-between align-items-center projects__title">
-          <h1 className="title">Nos dernières réalisations pour nos meilleurs clients</h1>
+          <div>
+            <span className="section-label">Notre portfolio</span>
+            <h2 className="title">Nos dernières réalisations pour nos meilleurs clients</h2>
+          </div>
           <Link href="/projects" className="circle mt-5 mt-lg-0">
             <i className="fa-solid fa-arrow-right"></i>
             <span>Voir plus</span>
           </Link>
         </SlideDown>
-        {/* title End */}
+
         <div className="projects__wapper">
           {projects.map(({ id, title, categories, imgSrc, slug }) => (
             <SlideUp delay={id} key={id} className="projects__wapper_card">
               <Link href={slug ? `/project-details/${slug}` : '/project-details'}>
-                <img src={imgSrc} alt="img" />
+                <img src={imgSrc} alt={title || 'Projet'} />
               </Link>
               <div>
                 <Link href={slug ? `/project-details/${slug}` : '/project-details'} className="prj__title t__28">

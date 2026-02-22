@@ -1,3 +1,8 @@
+// ===================================================================
+// TESTIMONIALS SECTION — Redesign complet
+// ===================================================================
+
+// ------------ Legacy classes kept for testimonialTwo / testimonialThree
 .testimonial {
   background-color: var(--main-clr);
 
@@ -38,15 +43,13 @@
         padding: 25px;
       }
     }
-    .star {
-      i {
-        color: var(--btn-clr);
-      }
+    .star i {
+      color: var(--btn-clr);
     }
     .review {
       font-size: 22px;
       color: var(--grayWhite-clr);
-      font-weight: 6000;
+      font-weight: 600;
       margin-bottom: 50px;
       margin-top: 30px;
       @include breakpoint(md) {
@@ -68,9 +71,9 @@
       }
       p {
         font-size: 20px;
-        font-weight: 500px;
+        font-weight: 500;
         color: var(--grayWhite-clr);
-        font-family: Kanit;
+        font-family: var(--font-kanit), 'Kanit', sans-serif;
       }
       small {
         color: var(--pra-clr);
@@ -108,9 +111,9 @@
     color: var(--grayWhite-clr);
     cursor: pointer;
   }
-  .slide-dots-active{
+  .slide-dots-active {
     background-color: var(--btn-clr);
-    color: var(--secondary-clr)
+    color: var(--secondary-clr);
   }
   .slide__nav {
     @extend .slide-dots;
@@ -123,10 +126,9 @@
       color: var(--secondary-clr);
     }
   }
-
 }
 
-// ------------ testimonial__2 for home page 2 and it's extend code from main home page
+// ------------ testimonial__2 / testimonial__3 legacy
 .testimonial__2 {
   background-color: transparent;
   .title {
@@ -138,12 +140,8 @@
       color: var(--secondary-clr);
     }
     .reviewer__info {
-      p {
-        color: var(--secondary-clr);
-      }
-      small {
-        color: var(--secondary-clr);
-      }
+      p { color: var(--secondary-clr); }
+      small { color: var(--secondary-clr); }
     }
   }
   .slick-dots {
@@ -159,25 +157,402 @@
   }
   .prev-arrow {
     right: 57%;
-    @include breakpoint(xl) {
-      right: 75%;
-    }
-    @include breakpoint(lg) {
-      right: 83%;
-    }
-    @include breakpoint(md) {
-      right: 80%;
-    }
-    @include breakpoint(sm) {
-      right: 70%;
-    }
+    @include breakpoint(xl) { right: 75%; }
+    @include breakpoint(lg) { right: 83%; }
+    @include breakpoint(md) { right: 80%; }
+    @include breakpoint(sm) { right: 70%; }
   }
   .next-arrow {
     left: 2%;
   }
 }
 
-// ------------ testimonial__3 for about page and it's extend code from main home page
 .testimonial__3 {
   padding-top: 50px;
+}
+
+// ===================================================================
+// NEW TESTIMONIAL SECTION — Modern redesign
+// ===================================================================
+.testi-section {
+  background: linear-gradient(180deg, #0c1a18 0%, #142220 30%, #1a3a34 100%);
+  padding: 120px 0 100px;
+  position: relative;
+  overflow: hidden;
+
+  @include breakpoint(lg) {
+    padding: 100px 0 80px;
+  }
+  @include breakpoint(md) {
+    padding: 80px 0 60px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(58, 99, 164, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(242, 211, 129, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  // Header
+  &__header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+    position: relative;
+    z-index: 1;
+
+    @include breakpoint(md) {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__title {
+    font-family: var(--font-kanit), 'Kanit', sans-serif;
+    font-size: 48px;
+    font-weight: 600;
+    color: var(--primary-clr);
+    line-height: 1.2;
+    margin-bottom: 16px;
+
+    @include breakpoint(lg) {
+      font-size: 40px;
+    }
+    @include breakpoint(md) {
+      font-size: 32px;
+    }
+    @include breakpoint(sm) {
+      font-size: 28px;
+    }
+  }
+
+  &__subtitle {
+    color: var(--pra-clr) !important;
+    font-size: 18px;
+    line-height: 1.6;
+
+    @include breakpoint(md) {
+      font-size: 16px;
+    }
+  }
+
+  // CTA
+  &__cta {
+    text-align: center;
+    margin-top: 60px;
+    position: relative;
+    z-index: 1;
+
+    @include breakpoint(md) {
+      margin-top: 40px;
+    }
+  }
+}
+
+// ===== Featured Testimonial =====
+.testi-featured {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 50px;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 1;
+
+  @include breakpoint(lg) {
+    padding: 40px;
+  }
+  @include breakpoint(md) {
+    padding: 30px 24px;
+  }
+
+  &__avatar {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+
+    @include breakpoint(md) {
+      width: 100px;
+      height: 100px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--btn-clr);
+      position: relative;
+      z-index: 1;
+    }
+
+    &-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px dashed rgba(242, 211, 129, 0.3);
+      animation: spin-slow 20s linear infinite;
+    }
+  }
+
+  &__name {
+    font-family: var(--font-kanit), 'Kanit', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--primary-clr);
+    margin-bottom: 4px;
+  }
+
+  &__role {
+    color: var(--btn-clr) !important;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  &__company {
+    display: inline-block;
+    color: var(--pra-clr);
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+
+  &__stars {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+
+    i {
+      color: var(--btn-clr);
+      font-size: 16px;
+    }
+  }
+
+  &__content {
+    position: relative;
+    padding-left: 20px;
+
+    @include breakpoint(md) {
+      padding-left: 0;
+      margin-top: 20px;
+    }
+  }
+
+  &__quote-icon {
+    font-size: 48px;
+    color: rgba(242, 211, 129, 0.15);
+    margin-bottom: 16px;
+    display: block;
+
+    @include breakpoint(md) {
+      font-size: 36px;
+    }
+  }
+
+  &__text {
+    font-size: 20px;
+    line-height: 1.7;
+    color: var(--grayWhite-clr) !important;
+    font-weight: 400;
+    font-style: italic;
+
+    @include breakpoint(lg) {
+      font-size: 18px;
+    }
+    @include breakpoint(md) {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+  }
+
+  &__result {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    border-radius: 50px;
+    color: #4ade80;
+    font-weight: 600;
+    font-size: 15px;
+
+    i {
+      font-size: 14px;
+    }
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ===== Testimonial Grid =====
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+
+  @include breakpoint(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include breakpoint(sm) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+// ===== Testimonial Card =====
+.testi-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 32px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+
+  @include breakpoint(md) {
+    padding: 24px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--cta-gradient);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  &:hover,
+  &--active {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(242, 211, 129, 0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  // Stars
+  &__stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 16px;
+
+    i {
+      color: var(--btn-clr);
+      font-size: 14px;
+    }
+  }
+
+  // Text
+  &__text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--grayWhite-clr) !important;
+    flex: 1;
+    margin-bottom: 20px;
+    font-style: italic;
+
+    @include breakpoint(md) {
+      font-size: 15px;
+    }
+  }
+
+  // Result badge
+  &__result {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.15);
+    border-radius: 50px;
+    color: #4ade80;
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 20px;
+    width: fit-content;
+
+    i {
+      font-size: 12px;
+    }
+  }
+
+  // Author
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(242, 211, 129, 0.3);
+      flex-shrink: 0;
+    }
+  }
+
+  &__name {
+    font-family: var(--font-kanit), 'Kanit', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-clr) !important;
+    margin-bottom: 2px !important;
+    line-height: 1.2;
+  }
+
+  &__role {
+    color: var(--btn-clr) !important;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  &__company {
+    color: var(--pra-clr) !important;
+    font-size: 12px;
+    margin-top: 2px;
+  }
 }
