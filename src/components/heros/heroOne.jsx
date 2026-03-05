@@ -6,8 +6,8 @@ const HeroOne = () => {
     return (
         <section className="banner overflow-hidden">
             <div className="container position-relative">
-                <div className="row align-items-center">
-                    <div className="col-lg-8 order-1">
+                <div className="row">
+                    <div className="col-lg-8">
                         <div className="banner__content">
                             <div className="banner__content_title">
                                 <SlideUp>
@@ -63,7 +63,7 @@ const HeroOne = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-4 order-2 mt-4 mt-lg-0 d-none d-lg-block">
+                    <div className="col-lg-4 d-none d-lg-block">
                         <div className="banner__right">
                             <img src="/images/banner/Shape.svg" alt="" className="bg__shap" role="presentation" />
                             <img src="/images/banner/Video.svg" alt="" className="bg__video" role="presentation" />

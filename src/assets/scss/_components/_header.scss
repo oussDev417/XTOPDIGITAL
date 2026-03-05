@@ -39,14 +39,15 @@
 
   //   ------------ Bottom Header Start
   &__bottom {
-    background-color: var(--btn-clr);
+    background-color: #0f1b19;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     padding: 24px 0;
     position: relative;
     z-index: 1000;
     &_logo {
       h5 {
         font-size: 34px;
-        color: var(--secondary-clr);
+        color: var(--primary-clr);
       }
     }
     &_navbar {
@@ -56,7 +57,7 @@
         left: -100%;
         min-height: 100vh;
         min-width: 300px;
-        background-color: var(--btn-clr);
+        background-color: #0f1b19;
         transition: all 0.5s ease-in-out;
       }
 
@@ -67,7 +68,7 @@
           @include breakpoint(xl) {
             padding-bottom: 15px;
             margin-bottom: 12px;
-            border-bottom: 1px solid #e2c26b;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
           }
           &:last-child {
             @include breakpoint(xl) {
@@ -76,11 +77,14 @@
           }
         }
         a {
-          color: var(--secondary-clr);
+          color: var(--primary-clr);
           font-weight: 600;
           padding: 20px 0;
           @include breakpoint(xl) {
             padding: 0px 0;
+          }
+          &:hover {
+            color: #7fb1ff;
           }
         }
         i {
@@ -92,7 +96,7 @@
         &_menu {
           position: absolute;
           left: -9px;
-          background-color: var(--btn-clr);
+          background-color: #0f1b19;
           min-width: 150px;
           width: fit-content;
           padding: 10px 10px;
@@ -145,11 +149,17 @@
     .common__btn {
       background-color: var(--main-clr);
       gap: 2px;
+      border-color: var(--main-clr);
+      span,
+      i {
+        color: var(--primary-clr);
+      }
     }
     .menu__icon {
       i {
         font-size: 32px;
         cursor: pointer;
+        color: var(--primary-clr);
       }
     }
   }

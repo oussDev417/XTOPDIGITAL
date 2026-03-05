@@ -57,7 +57,13 @@
         border: 1px solid var(--main-clr);
       }
       &_outline {
-        color: var(--btn-clr);
+        color: var(--primary-clr);
+        border-color: rgba(255, 255, 255, 0.45);
+        background-color: rgba(255, 255, 255, 0.04);
+        &:hover {
+          border-color: var(--main-clr);
+          background-color: rgba(58, 99, 164, 0.2);
+        }
       }
     }
     &_number {

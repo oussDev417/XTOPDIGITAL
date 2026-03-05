@@ -1,60 +1,19 @@
 'use client';
 
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 import { usePathname } from 'next/navigation';
 
 const Footer = () => {
     const pathname = usePathname();
-    const [email, setEmail] = useState('');
-    const [subscribed, setSubscribed] = useState(false);
 
     if (pathname.startsWith('/admin')) {
         return null;
     }
 
-    const handleNewsletterSubmit = (e) => {
-        e.preventDefault();
-        if (email) {
-            setSubscribed(true);
-            setEmail('');
-            setTimeout(() => setSubscribed(false), 5000);
-        }
-    };
-
     return (
         <footer className="footer">
             <div className="container">
-                {/* Newsletter CTA */}
-                <div className="footer__newsletter d-none d-md-block">
-                    <div className="row align-items-center">
-                        <div className="col-lg-6 mb-4 mb-lg-0">
-                            <h2 className="footer__newsletter_title">
-                                Prêt à booster votre présence digitale ?
-                            </h2>
-                            <p className="footer__newsletter_text">
-                                Recevez nos conseils exclusifs et les dernières tendances du digital directement dans votre boîte mail.
-                            </p>
-                        </div>
-                        <div className="col-lg-6">
-                            <form onSubmit={handleNewsletterSubmit} className="footer__newsletter_form">
-                                <input
-                                    type="email"
-                                    placeholder="Votre adresse email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                    aria-label="Adresse email pour la newsletter"
-                                />
-                                <button type="submit" className="common__btn">
-                                    <span>{subscribed ? '✓ Inscrit !' : "S'inscrire"}</span>
-                                    {!subscribed && <i className="fa-solid fa-arrow-right"></i>}
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
                 {/* Logo and social */}
                 <div className="row footer__lo_co mb-5">
                     <div className="col-12">

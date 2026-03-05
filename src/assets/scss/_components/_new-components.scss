@@ -81,7 +81,7 @@
 
 // ===== Text Highlight =====
 .text-highlight {
-  background: var(--cta-gradient);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -89,19 +89,19 @@
 
 // ===== CTA Button Variant =====
 .buttons_cta {
-  background: var(--cta-gradient) !important;
-  border: none !important;
-  color: var(--secondary-clr) !important;
+  background: var(--accent-gradient) !important;
+  border: 1px solid var(--main-clr) !important;
+  color: var(--primary-clr) !important;
   font-weight: 600;
-  box-shadow: 0 4px 20px rgba(242, 211, 129, 0.3);
+  box-shadow: 0 4px 20px rgba(58, 99, 164, 0.35);
   transition: var(--transition);
 
   span {
-    color: var(--secondary-clr) !important;
+    color: var(--primary-clr) !important;
   }
 
   &:hover {
-    box-shadow: 0 6px 30px rgba(242, 211, 129, 0.5);
+    box-shadow: 0 6px 30px rgba(58, 99, 164, 0.55);
     transform: translateY(-2px);
   }
 }
