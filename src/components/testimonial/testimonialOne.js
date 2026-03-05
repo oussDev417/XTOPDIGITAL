@@ -34,6 +34,36 @@ const fallbackCompanies = [
     "MediaPro Afrique",
 ];
 
+function createInitialAvatar(name = 'Client') {
+    const initials = (name || 'Client')
+        .split(' ')
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((part) => part[0]?.toUpperCase() || '')
+        .join('');
+    const safeInitials = initials || 'CL';
+
+    const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160">
+        <defs>
+          <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3a63a4"/>
+            <stop offset="100%" stop-color="#1f4038"/>
+          </linearGradient>
+        </defs>
+        <rect width="160" height="160" rx="80" fill="url(#g)"/>
+        <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="52" font-weight="700">${safeInitials}</text>
+      </svg>
+    `;
+    return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
+
+function resolveAvatarSrc(src, name) {
+    if (!src) return createInitialAvatar(name);
+    if (src.startsWith('http://')) return src.replace('http://', 'https://');
+    return src;
+}
+
 export default function TestimonialOne() {
     const [testimonials, setTestimonials] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -101,8 +131,15 @@ export default function TestimonialOne() {
                                     <div className="col-lg-4 text-center mb-4 mb-lg-0">
                                         <div className="testi-featured__avatar">
                                             <img
-                                                src={testimonials[0].reviewer?.image || testimonials[0].imgSrc}
+                                                src={resolveAvatarSrc(testimonials[0].reviewer?.image || testimonials[0].imgSrc, testimonials[0].reviewer?.name || testimonials[0].name)}
                                                 alt={testimonials[0].reviewer?.name || testimonials[0].name}
+                                                loading="lazy"
+                                                referrerPolicy="no-referrer"
+                                                onError={(e) => {
+                                                    const fallback = createInitialAvatar(testimonials[0].reviewer?.name || testimonials[0].name);
+                                                    e.currentTarget.onerror = null;
+                                                    e.currentTarget.src = fallback;
+                                                }}
                                             />
                                             <div className="testi-featured__avatar-ring"></div>
                                         </div>
@@ -167,8 +204,15 @@ export default function TestimonialOne() {
                                             )}
                                             <div className="testi-card__author">
                                                 <img
-                                                    src={testimonial.reviewer?.image || testimonial.imgSrc}
+                                                    src={resolveAvatarSrc(testimonial.reviewer?.image || testimonial.imgSrc, testimonial.reviewer?.name || testimonial.name)}
                                                     alt={testimonial.reviewer?.name || testimonial.name || 'Client'}
+                                                    loading="lazy"
+                                                    referrerPolicy="no-referrer"
+                                                    onError={(e) => {
+                                                        const fallback = createInitialAvatar(testimonial.reviewer?.name || testimonial.name || 'Client');
+                                                        e.currentTarget.onerror = null;
+                                                        e.currentTarget.src = fallback;
+                                                    }}
                                                 />
                                                 <div>
                                                     <p className="testi-card__name">

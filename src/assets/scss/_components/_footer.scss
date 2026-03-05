@@ -65,13 +65,7 @@
   }
 
   &__lo_co {
-    margin-top: -49px;
-    @include breakpoint(lg){
-      margin-top: -60px;
-    }
-    @include breakpoint(md){
-      margin-top: -100px;
-    }
+    margin-top: 0;
   }
   &__logo {
     margin-bottom: 50px;
@@ -133,6 +127,9 @@
 
   &__copyright {
     margin-top: 133px;
+    @include breakpoint(md) {
+      margin-top: 48px;
+    }
     p {
       padding: 25px 0;
       a {

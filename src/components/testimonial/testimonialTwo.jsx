@@ -50,6 +50,36 @@ const fallbackReviews = [
     },
 ];
 
+function createInitialAvatar(name = 'Client') {
+    const initials = (name || 'Client')
+        .split(' ')
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((part) => part[0]?.toUpperCase() || '')
+        .join('');
+    const safeInitials = initials || 'CL';
+
+    const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180">
+        <defs>
+          <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3a63a4"/>
+            <stop offset="100%" stop-color="#1f4038"/>
+          </linearGradient>
+        </defs>
+        <rect width="180" height="180" rx="90" fill="url(#g)"/>
+        <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="58" font-weight="700">${safeInitials}</text>
+      </svg>
+    `;
+    return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
+
+function resolveAvatarSrc(src, name) {
+    if (!src) return createInitialAvatar(name);
+    if (src.startsWith('http://')) return src.replace('http://', 'https://');
+    return src;
+}
+
 export default function TestimonialTwo() {
     const [testimonials, setTestimonials] = useState(fallbackReviews);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -118,9 +148,16 @@ export default function TestimonialTwo() {
                         <div className="testi-about__showcase">
                             <div className="testi-about__photo">
                                 <img
-                                    src={currentTestimonial.imgSrc}
+                                    src={resolveAvatarSrc(currentTestimonial.imgSrc, currentTestimonial.reviewerName)}
                                     alt={currentTestimonial.reviewerName}
                                     key={currentTestimonial.imgSrc}
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer"
+                                    onError={(e) => {
+                                        const fallback = createInitialAvatar(currentTestimonial.reviewerName);
+                                        e.currentTarget.onerror = null;
+                                        e.currentTarget.src = fallback;
+                                    }}
                                 />
                                 <div className="testi-about__photo-badge">
                                     <div className="testi-about__photo-stars">
@@ -192,8 +229,15 @@ export default function TestimonialTwo() {
                                                 )}
                                                 <div className="testi-about__card-author">
                                                     <img
-                                                        src={testimonial.imgSrc}
+                                                        src={resolveAvatarSrc(testimonial.imgSrc, testimonial.reviewerName)}
                                                         alt={testimonial.reviewerName}
+                                                        loading="lazy"
+                                                        referrerPolicy="no-referrer"
+                                                        onError={(e) => {
+                                                            const fallback = createInitialAvatar(testimonial.reviewerName);
+                                                            e.currentTarget.onerror = null;
+                                                            e.currentTarget.src = fallback;
+                                                        }}
                                                     />
                                                     <div>
                                                         <p className="testi-about__card-name">

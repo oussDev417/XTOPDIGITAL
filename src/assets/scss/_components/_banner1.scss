@@ -109,6 +109,19 @@
         }
       }
     }
+
+    .banner__mobile_image {
+      margin-top: 28px;
+      img {
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto;
+        display: block;
+        border-radius: 12px;
+        border-top-left-radius: 44px;
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+      }
+    }
   }
   &__right {
     position: relative;
@@ -133,6 +146,17 @@
         right: -20%;
         opacity: 0.5;
       }
+      @include breakpoint(md) {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        max-width: 360px;
+        margin: 24px auto 0;
+        opacity: 1;
+        display: block;
+        border-top-left-radius: 40px;
+      }
     }
     .bg__shap {
       position: absolute;
@@ -150,6 +174,13 @@
       @include breakpoint(lg) {
         display: none;
       }
+    }
+    @include breakpoint(md) {
+      min-height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      text-align: center;
     }
   }
 

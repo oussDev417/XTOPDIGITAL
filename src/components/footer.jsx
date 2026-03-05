@@ -26,7 +26,7 @@ const Footer = () => {
         <footer className="footer">
             <div className="container">
                 {/* Newsletter CTA */}
-                <div className="footer__newsletter">
+                <div className="footer__newsletter d-none d-md-block">
                     <div className="row align-items-center">
                         <div className="col-lg-6 mb-4 mb-lg-0">
                             <h2 className="footer__newsletter_title">

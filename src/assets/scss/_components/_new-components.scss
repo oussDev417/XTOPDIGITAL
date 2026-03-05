@@ -426,7 +426,8 @@
   }
 
   @include breakpoint(md) {
-    padding: 30px 24px;
+    padding: 24px 18px;
+    margin-bottom: 28px;
   }
 
   &::before {
@@ -515,6 +516,13 @@
         box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
       }
     }
+  }
+}
+
+// Mobile: éviter le double CTA "devis + newsletter"
+@media (max-width: 768px) {
+  .footer__newsletter {
+    display: none;
   }
 }
 

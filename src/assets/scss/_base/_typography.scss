@@ -267,20 +267,36 @@ p {
 }
 
 .partner {
-  background-color: #293634;
-  border-radius: 10px;
-  padding: 90px;
+  background: linear-gradient(135deg, #1f4038 0%, #243c4f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 70px 56px 56px;
   margin-top: 106px;
   overflow-x: hidden;
 
   @include breakpoint(xl) {
-    padding: 70px;
+    padding: 60px 46px 46px;
     margin-top: 90px;
   }
 
   @include breakpoint(md) {
-    padding: 50px;
+    padding: 40px 20px 24px;
     margin-top: 70px;
+  }
+
+  &__header {
+    margin-bottom: 28px;
+  }
+
+  &__title {
+    color: var(--grayWhite-clr);
+    font-size: 28px;
+    line-height: 1.4;
+    max-width: 720px;
+    margin: 10px auto 0;
+    @include breakpoint(md) {
+      font-size: 22px;
+    }
   }
 
   &__wapper {
@@ -291,7 +307,7 @@ p {
 
   &__logo {
     max-height: 60px;
-    max-width: 160px;
+    max-width: 150px;
     width: auto;
     height: 60px;
     object-fit: contain;
@@ -302,9 +318,35 @@ p {
   &__content {
     overflow-x: hidden;
     display: flex;
-    gap: 60px;
-    width: calc(220px * 10);
-    animation: scroll 40s linear infinite;
+    gap: 16px;
+    width: max-content;
+    animation: scroll 32s linear infinite;
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  &__item {
+    width: 190px;
+    min-width: 190px;
+    height: 94px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+    @include breakpoint(md) {
+      width: 160px;
+      min-width: 160px;
+      height: 80px;
+    }
+    &:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.12);
+    }
   }
 }
 
@@ -314,7 +356,7 @@ p {
   }
 
   100% {
-    transform: translateX(calc(-220px * 5));
+    transform: translateX(-50%);
   }
 }
 
