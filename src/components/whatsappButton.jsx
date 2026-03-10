@@ -14,7 +14,7 @@ const WhatsAppButton = () => {
 
     if (pathname.startsWith('/admin')) return null;
 
-    const phoneNumber = '22901642233028';
+    const phoneNumber = '2290164223328';
     const message = encodeURIComponent(
         "Bonjour XTOP DIGITAL ! Je suis intéressé(e) par vos services digitaux. Pouvez-vous m'en dire plus ?"
     );

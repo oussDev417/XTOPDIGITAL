@@ -28,12 +28,12 @@ const Footer = () => {
                         </p>
                         <ul className="d-flex justify-content-center gap-3 footer__socal">
                             <li>
-                                <a href="https://facebook.com/xtopdigital" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <a href="https://www.facebook.com/people/XTOP-Digital/61576689539750/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                                     <i className="fa-brands fa-facebook-f" />
                                 </a>
                             </li>
                             <li>
-                                <a href="https://linkedin.com/company/xtopdigital" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <a href="https://linkedin.com/company/xtop-digital" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                                     <i className="fa-brands fa-linkedin-in" />
                                 </a>
                             </li>
